@@ -15,11 +15,8 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ActionBar bar=getActionBar();
-		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f2f2f2")));
-//		setTitle("文字图片");
-		bar.setTitle("文字图片");
 		setContentView(R.layout.activity_main);
+		
 	}
 
 	@Override
