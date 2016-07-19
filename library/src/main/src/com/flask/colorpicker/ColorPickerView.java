@@ -94,7 +94,7 @@ public class ColorPickerView extends View {
 
 	@TargetApi(21)
 	public ColorPickerView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
+		super(context, attrs, defStyleAttr);
 		initWith(context, attrs);
 	}
 
@@ -430,7 +430,7 @@ public class ColorPickerView extends View {
 					Object tag = v.getTag();
 					if (tag == null || !(tag instanceof Integer))
 						return;
-					setSelectedColor((int) tag);
+					setSelectedColor((Integer) tag);
 				}
 			});
 		}

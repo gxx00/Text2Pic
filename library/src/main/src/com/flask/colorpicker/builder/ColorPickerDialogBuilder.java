@@ -1,6 +1,6 @@
 package com.flask.colorpicker.builder;
 
-import android.support.v7.app.AlertDialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -28,7 +28,7 @@ public class ColorPickerDialogBuilder {
 	private AlphaSlider alphaSlider;
 	private EditText colorEdit;
 	private LinearLayout colorPreview;
-
+    private Context context;
 	private boolean isLightnessSliderEnabled = true;
 	private boolean isAlphaSliderEnabled = true;
 	private boolean isColorEditEnabled = false;
@@ -38,6 +38,7 @@ public class ColorPickerDialogBuilder {
 	private Integer[] initialColor = new Integer[]{null, null, null, null, null};
 
 	private ColorPickerDialogBuilder(Context context) {
+		this.context=context;
 		builder = new AlertDialog.Builder(context);
 		pickerContainer = new LinearLayout(context);
 		pickerContainer.setOrientation(LinearLayout.VERTICAL);
@@ -163,7 +164,7 @@ public class ColorPickerDialogBuilder {
 	}
 
 	public AlertDialog build() {
-		Context context = builder.getContext();
+		
 		colorPickerView.setInitialColors(initialColor, getStartOffset(initialColor));
 
 		if (isLightnessSliderEnabled) {

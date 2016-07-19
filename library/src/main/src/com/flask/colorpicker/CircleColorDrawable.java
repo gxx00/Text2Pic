@@ -31,15 +31,13 @@ public class CircleColorDrawable extends ColorDrawable {
 		strokeWidth = radius / 12f;
 
 		this.strokePaint.setStrokeWidth(strokeWidth);
+		
 		this.fillPaint.setColor(getColor());
+		
 		canvas.drawCircle(radius, radius, radius - strokeWidth * 1.5f, fillBackPaint);
 		canvas.drawCircle(radius, radius, radius - strokeWidth * 1.5f, fillPaint);
 		canvas.drawCircle(radius, radius, radius - strokeWidth, strokePaint);
 	}
-
-	@Override
-	public void setColor(int color) {
-		super.setColor(color);
-		invalidateSelf();
-	}
+    
+	
 }
