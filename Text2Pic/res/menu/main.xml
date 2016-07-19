@@ -3,13 +3,13 @@
     tools:context="com.example.text2pic.MainActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/share"
         android:orderInCategory="100"
         android:showAsAction="always"
         android:icon="@drawable/share"
         android:title="@string/action_settings"/>
     <item 
-        android:id="@+id/item1"
+        android:id="@+id/save"
         android:orderInCategory="101"
         android:showAsAction="always"
         android:icon="@drawable/save"

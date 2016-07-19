@@ -10,16 +10,24 @@
         android:layout_height="match_parent"
         android:focusable="true"
         android:gravity="left|top"
-        android:layout_margin="5dp"
+        android:background="#ffffff"
         android:scrollbars="vertical" />
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:orientation="horizontal"
+        android:id="@+id/main_ll1"
+        android:layout_alignParentBottom="true"
+        android:background="#00000000"
+        >
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:background="#aaa"
+        android:background="#44aaaaaa"
+        android:id="@+id/main_ll"
         >
          <LinearLayout 
             android:layout_width="wrap_content"
@@ -63,6 +71,7 @@
                 android:src="@drawable/reduce"
                 />
         </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
