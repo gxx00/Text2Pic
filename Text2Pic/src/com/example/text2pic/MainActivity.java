@@ -8,6 +8,7 @@ import java.text.BreakIterator;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.example.app.MyApplication;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.OnColorSelectedListener;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
@@ -16,7 +17,9 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Color;
@@ -30,6 +33,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -105,70 +109,34 @@ public class MainActivity extends Activity implements OnClickListener {
 		}else if (id==R.id.save) {
 			initWH();
 			text.setCursorVisible(false);
+			if (linearlayout.getVisibility()!=View.INVISIBLE) {
+				linearlayout.setVisibility(View.INVISIBLE);
+			}
 			final Bitmap bitmap=genetePic();
 			text.setCursorVisible(true);
-			final Dialog dialog=new Dialog(this, R.style.mydialog);
-			View view=getLayoutInflater().inflate(R.layout.dialog_content, null);
-			ImageView imageView=(ImageView) view.findViewById(R.id.dialog_content_iv);
-			TextView ok=(TextView) view.findViewById(R.id.dialog_content_save);
-			TextView cancel=(TextView) view.findViewById(R.id.dialog_content_cancel);
-			imageView.setImageBitmap(bitmap);
-			ok.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					FileRev(bitmap);
-					dialog.dismiss();
-				}
-			});
-			cancel.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					dialog.dismiss();
-				}
-			});
-			dialog.setContentView(view);
-			dialog.show();
+			Intent intent=new Intent();
+			intent.setClass(this, PicActivity.class);
+			MyApplication.app.setBit(bitmap);
+			startActivity(intent);
+			overridePendingTransition(R.anim.anim_picenter, 0);
+			if (linearlayout.getVisibility()==View.INVISIBLE) {
+				linearlayout.setVisibility(View.VISIBLE);
+			}
+			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	protected void FileRev(Bitmap bitmap) {
+	private void hideSoftIme() {
 		// TODO Auto-generated method stub
-		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-		{
-			File dir=new File(Environment.getExternalStorageDirectory(), "text2pic");
-			dir.mkdirs();
-			File file=new File(dir, getTime()+".pic");
-			FileOutputStream fileOutputStream=null;
-			try {
-				fileOutputStream=new FileOutputStream(file);
-				bitmap.compress(CompressFormat.PNG, 100, fileOutputStream);
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
-				try {
-					fileOutputStream.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-		}
+		InputMethodManager inputMethodManager=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
-	private String getTime() {
-		// TODO Auto-generated method stub
-		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddhhmmss");
-		
-		return simpleDateFormat.format(new Date());
-	}
+
+
+	
 
 	private Bitmap genetePic() {
 		// TODO Auto-generated method stub

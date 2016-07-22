@@ -27,10 +27,9 @@
         <item name="android:textSize">16sp</item>
         <item name="android:text">文字图片</item>
     </style>
-    <style name="mydialog" parent="android:Theme.Dialog">
+    <style name="mydialog" parent="android:Theme.Light">
         <item name="android:windowNoTitle">true</item>
         <item name="android:background">#44000000</item>
-        <item name="android:windowIsFloating">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 </resources>
